@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "6baaf05d-c918-4176-83bf-d7acaa42ff52",
+		"name": "OO Parking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18228020"
+	},
+	"item": [
+		{
+			"name": "Parking",
+			"item": [
+				{
+					"name": "Park",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entrance_code\": \"ENTRANCE_A\",\n    \"plate_number\": \"IVN-525\",\n    \"category\": \"L\",\n    \"park_in_time\" : \"2022-01-01T01:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/parking/park",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"parking",
+								"park"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/parking/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"parking",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leave Parking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"plate_number\": \"IVN-525\",\n    \"park_out_time\" : \"2022-01-01T05:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/parking/leave",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"parking",
+								"leave"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parking-Complex-Slot",
+			"item": [
+				{
+					"name": "Slot",
+					"item": [
+						{
+							"name": "Add Slot",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"LP\",\n    \"name\": \"Large Parking\",\n    \"price\": 100.00\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/parking-complex/slot",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										"slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Slot",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/api/parking-complex/slot",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										"slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Parking Slot Map",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mapping\": [\n        {\n            \"parking_complex_id\": \"5ca3c9d8-8cd7-4b82-aaa6-4bf1c765478f\",\n            \"slot_id\": \"4a909ebb-b7d6-48dd-93da-807368e67ae2\",\n            \"code\": \"PC_A_LP_1\"\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/parking-complex/map",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										"map"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Parking List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/parking-complex/parking-slots?entrance=ENTRANCE_A&sort_field=code&sort_order=ASC&size=10&page=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										"parking-slots"
+									],
+									"query": [
+										{
+											"key": "entrance",
+											"value": "ENTRANCE_A"
+										},
+										{
+											"key": "sort_field",
+											"value": "code"
+										},
+										{
+											"key": "sort_order",
+											"value": "ASC"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Available Parking Slots",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/parking-complex/available?entrance=ENTRANCE_A&vehicle_category=S&sort_field=code&sort_order=DESC&size=10&page=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										"available"
+									],
+									"query": [
+										{
+											"key": "entrance",
+											"value": "ENTRANCE_A"
+										},
+										{
+											"key": "vehicle_category",
+											"value": "S"
+										},
+										{
+											"key": "sort_field",
+											"value": "code"
+										},
+										{
+											"key": "sort_order",
+											"value": "DESC"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Entrance",
+					"item": [
+						{
+							"name": "Add Entrance",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"parking\": \"ENTRANCE_D\",\n    \"entry_point\": [\"10\", \"11\", \"12\"]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/parking-complex/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Entrance",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1443464c-5be0-4ba5-bd5b-2b956df7f569\",\n    \"parking\": \"Entrance_E\",\n    \"entry_point\": [\"13\", \"12\", \"13\"]\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/parking-complex/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Entrance",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/api/parking-complex/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"parking-complex",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
