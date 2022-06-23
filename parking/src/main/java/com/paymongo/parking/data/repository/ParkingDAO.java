@@ -13,7 +13,7 @@ public interface ParkingDAO extends JpaRepository<ParkingEntity, UUID> {
     boolean existsByPlateNumberAndStatus(String plateNumber, String status);
 
     @Query(value = "SELECT * FROM parking " +
-            "WHERE plate_number = 'IVN-525' " +
+            "WHERE plate_number = :plate_number " +
             "AND status = 'DONE' " +
             "ORDER BY park_out DESC LIMIT 1 ", nativeQuery = true)
     ParkingEntity queryFindPreviousParking(@Param("plate_number") String plateNumber);
